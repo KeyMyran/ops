@@ -2,7 +2,7 @@
 echo "脚本作者:火星小刘 web:www.huoxingxiaoliu.com email:xtlyk@163.com"
 
 #sleep 10
-zabbix_version=3.0.9
+zabbix_version=4.4.7
 zabbixdir=`pwd`
 ip=`ip addr |grep inet |egrep -v "inet6|127.0.0.1" |awk '{print $2}' |awk -F "/" '{print $1}'`
 release=`cat /etc/redhat-release | awk -F "release" '{print $2}' |awk -F "." '{print $1}' |sed 's/ //g'`
@@ -50,7 +50,7 @@ echo "flush privileges;" | mysql -uroot -p123321
 echo "安装zabbix-${zabbix_version}"
 sleep 3
 if [ ! -f zabbix-${zabbix_version}.tar.gz ];then
-	wget http://netix.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/${zabbix_version}/zabbix-${zabbix_version}.tar.gz
+	wget https://udomain.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/${zabbix_version}/zabbix-${zabbix_version}.tar.gz
 fi
 
 tar zxvf $zabbixdir/zabbix-${zabbix_version}.tar.gz
