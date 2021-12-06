@@ -18,8 +18,8 @@ echo "安装mysql、apache、php等相关组件"
 sleep 3
 
 if [ $release = 7 ];then
-	rpm -Uvh http://mirrors.isu.net.sa/pub/fedora/fedora-epel/7/x86_64/e/epel-release-7-6.noarch.rpm
-	yum -y install php-xml unixODBC unixODBC-devel  php-xmlrpc php-mbstring php-mhash patch java-devel wget unzip libxml2 libxml2-devel httpd mariadb mariadb-devel mariadb-server php php-mysql php-common php-mbstring php-gd php-odbc php-pear curl curl-devel net-snmp net-snmp-devel perl-DBI php-xml ntpdate  php-bcmath zlib-devel glibc-devel curl-devel gcc automake libidn-devel openssl-devel net-snmp-devel rpm-devel OpenIPMI-devel
+	yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+	yum -y install mysql-devel libevent-devel php-xml unixODBC unixODBC-devel  php-xmlrpc php-mbstring php-mhash patch java-devel wget unzip libxml2 libxml2-devel httpd mariadb mariadb-devel mariadb-server php php-mysql php-common php-mbstring php-gd php-odbc php-pear curl curl-devel net-snmp net-snmp-devel perl-DBI php-xml ntpdate  php-bcmath zlib-devel glibc-devel curl-devel gcc automake libidn-devel openssl-devel net-snmp-devel rpm-devel OpenIPMI-devel
 	systemctl start mariadb.service
 elif [ $release = 6 ];then
 	yum remove php.x86_64 php-cli.x86_64 php-common.x86_64 php-gd.x86_64 php-ldap.x86_64 php-mbstring.x86_64 php-mcrypt.x86_64 php-mysql.x86_64 php-pdo.x86_64 -y
@@ -143,6 +143,6 @@ echo "启动zabbix"
 /etc/init.d/zabbix_agentd restart
 /usr/local/zabbix/sbin/zabbix_java/startup.sh
 
-echo "数据库默认root密码zabbix123321;zabbix-Database name:zabbix/User:zabbix/Password:zabbix"
+echo "数据库默认root密码zabbix123321;zabbix-Database name:zabbix/User:Admin/Password:zabbix"
 cp $zabbixdir/zabbix-${zabbix_version}.tar.gz /var/www/html/zabbix
 echo "打开http://$ip/zabbix，进行下一步安装"
